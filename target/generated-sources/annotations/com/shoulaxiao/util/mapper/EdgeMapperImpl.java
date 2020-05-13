@@ -6,12 +6,14 @@ import com.shoulaxiao.util.converter.NodeStringConverter;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.Generated;
+import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2020-05-13T12:42:29+0800",
+    date = "2020-05-13T14:29:12+0800",
     comments = "version: 1.2.0.Final, compiler: javac, environment: Java 1.8.0_241 (Oracle Corporation)"
 )
+@Component
 public class EdgeMapperImpl implements EdgeMapper {
 
     @Override
@@ -35,8 +37,14 @@ public class EdgeMapperImpl implements EdgeMapper {
 
         EdgeDO edgeDO = new EdgeDO();
 
+        edgeDO.setId( edgeVO.getId() );
         edgeDO.setStartNode( NodeStringConverter.Node2String( edgeVO.getStartNode() ) );
         edgeDO.setEndNode( NodeStringConverter.Node2String( edgeVO.getEndNode() ) );
+        edgeDO.setCosValue( edgeVO.getCosValue() );
+        if ( edgeVO.getClassification() != null ) {
+            edgeDO.setClassification( String.valueOf( edgeVO.getClassification() ) );
+        }
+        edgeDO.setBelongGraph( edgeVO.getBelongGraph() );
 
         return edgeDO;
     }

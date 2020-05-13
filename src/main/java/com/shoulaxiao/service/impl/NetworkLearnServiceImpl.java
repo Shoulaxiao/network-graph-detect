@@ -30,7 +30,10 @@ public class NetworkLearnServiceImpl implements NetworkLearnService {
         for (CommonsMultipartFile multipartFile:files){
             String fileName=multipartFile.getOriginalFilename();
             if (fileName.contains(NetworkConstant.NODE_VECTER_SUFFIX)){
-                 learnDataService.readNodeData(multipartFile.getInputStream());
+
+            }
+            if(fileName.contains(NetworkConstant.NODE_DATA_SUFFIX)){
+                learnDataService.readNodeData(multipartFile.getInputStream(),1);
             }
         }
         return null;

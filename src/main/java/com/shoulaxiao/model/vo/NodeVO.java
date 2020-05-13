@@ -29,9 +29,15 @@ public class NodeVO {
 
     }
 
-    public NodeVO(String code) {
-        this.nodeCode = code;
+    public NodeVO(String nodeCode) {
+        this.nodeCode = nodeCode;
     }
+
+    public NodeVO(String code, int networkGraph) {
+        this.nodeCode = code;
+        this.belongGraph=networkGraph;
+    }
+
 
     public Long getId() {
         return id;

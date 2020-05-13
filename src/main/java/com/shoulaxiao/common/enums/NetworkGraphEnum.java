@@ -7,7 +7,10 @@ package com.shoulaxiao.common.enums;
  **/
 public enum  NetworkGraphEnum {
 
-    KARATE_GRAPH(1,"karate数据图")
+    KARATE_GRAPH(1,"karate数据图"),
+    FOOTBALL_GRAPH(2,"football数据"),
+    DOLPHIN_GRAPH(3,"dolphin数据"),
+    DOUBAN_GRAPH(4,"豆瓣数据")
     ;
 
 

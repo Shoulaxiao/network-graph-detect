@@ -12,7 +12,7 @@ import java.util.List;
  * @author: shoulaxiao
  * @create: 2020-05-13 12:17
  **/
-@Mapper(uses = {NodeStringConverter.class})
+@Mapper(componentModel = "spring",uses = {NodeStringConverter.class})
 public interface EdgeMapper {
 
     List<EdgeDO> vo2dos(List<EdgeVO> edgeVOS);

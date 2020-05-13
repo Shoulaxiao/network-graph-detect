@@ -31,6 +31,6 @@ public class NodeStringConverter {
             logger.warn("节点转化发现节点没有编号");
             return StringUtils.EMPTY;
         }
-        return nodeVO.getCode();
+        return nodeVO.getNodeCode();
     }
 }

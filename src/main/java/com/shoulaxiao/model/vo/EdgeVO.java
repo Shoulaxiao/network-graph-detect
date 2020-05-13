@@ -89,4 +89,5 @@ public class EdgeVO {
     public void setClassification(Double classification) {
         this.classification = classification;
     }
+
 }

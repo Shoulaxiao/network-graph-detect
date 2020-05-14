@@ -53,7 +53,7 @@ public class NetworkLearnServiceImpl implements NetworkLearnService {
 
 
     @Override
-    public SingleResult networkLearn(CommonsMultipartFile[] files,int networkGraph) throws IOException {
+    public SingleResult networkLearn(CommonsMultipartFile[] files, int networkGraph) throws IOException {
         //数据读取
         for (CommonsMultipartFile multipartFile : files) {
             String fileName = multipartFile.getOriginalFilename();
@@ -68,42 +68,42 @@ public class NetworkLearnServiceImpl implements NetworkLearnService {
                 learnDataService.readStandardDivision(multipartFile.getInputStream(), networkGraph);
             }
         }
-
-        //计算节点的度
         //邻接表
         generateNeighborList(networkGraph);
+
+        //计算节点的度
         List<NodeDO> graphNodes = nodeDOMapper.selectByGraph(networkGraph);
         for (NodeDO nodeDO : graphNodes) {
-            double nodeDegree = JSONArray.parseArray(nodeDO.getNeighborNodes()).size()+1;
+            double nodeDegree = JSONArray.parseArray(nodeDO.getNeighborNodes()).size() + 1;
             double realEdges = getRealEdges(nodeDO, graphNodes);
             double density = 2 * realEdges / (nodeDegree * (nodeDegree - 1));
             nodeDO.setDensityValue(density);
             nodeDOMapper.updateByPrimaryKey(nodeDO);
         }
 
-        return new SingleResult(null,true,StringUtils.EMPTY,"数据处理成功");
+        return new SingleResult(null, true, StringUtils.EMPTY, "数据处理成功");
     }
 
     private double getRealEdges(NodeDO nodeDO, List<NodeDO> graphNodes) {
-        double edges=0;
-        List<String> neighbor= JSONObject.parseArray(nodeDO.getNeighborNodes(),String.class);
-        Map<String,NodeDO> nodeDOMap=graphNodes.stream().collect(Collectors.toMap(NodeDO::getNodeCode, Function.identity()));
+        double edges = 0;
+        List<String> neighbor = JSONObject.parseArray(nodeDO.getNeighborNodes(), String.class);
+        Map<String, NodeDO> nodeDOMap = graphNodes.stream().collect(Collectors.toMap(NodeDO::getNodeCode, Function.identity()));
         for (String str : neighbor) {
-            List<String> neiborList = JSONObject.parseArray(nodeDOMap.get(str).getNeighborNodes(),String.class);
+            List<String> neiborList = JSONObject.parseArray(nodeDOMap.get(str).getNeighborNodes(), String.class);
             for (String neiborCode : neiborList) {
                 if (neighbor.contains(neiborCode)) {
                     edges++;
                 }
             }
         }
-        return edges;
+        return edges / 2.0;
     }
 
     private void generateNeighborList(int networkGraph) {
 
         List<NodeDO> graphNodes = nodeDOMapper.selectByGraph(networkGraph);
 
-        if (!graphNodes.get(0).getNeighborNodes().equals(StringUtils.EMPTY)){
+        if (!graphNodes.get(0).getNeighborNodes().equals(StringUtils.EMPTY)) {
             return;
         }
 

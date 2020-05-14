@@ -12,6 +12,6 @@ import java.io.IOException;
  **/
 public interface NetworkLearnService {
 
-    SingleResult networkLearn(CommonsMultipartFile[] files) throws IOException;
+    SingleResult networkLearn(CommonsMultipartFile[] files,int networkGraph) throws IOException;
 
 }

@@ -26,6 +26,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
@@ -200,9 +201,13 @@ public class LearnDataServiceImpl implements LearnDataService {
 
         List<NodeVO> needInsertResult = new ArrayList<>();
 
-        List<String> request = new ArrayList<>();
-        request.add(nodes[0]);
-        request.add(nodes[1]);
+        List<String> stringList = new ArrayList<>();
+        stringList.add(nodes[0]);
+        stringList.add(nodes[1]);
+        Map<String,Object> request=new HashMap<>();
+
+        request.put("list",stringList);
+        request.put("graph",networkGraph);
         Map<String, NodeDO> nodeDOMap = nodeDao.selectByNodeCodes(request).stream().collect(Collectors.toMap(NodeDO::getNodeCode, Function.identity()));
         if (!nodeDOMap.containsKey(nodes[0])) {
             needInsertResult.add(new NodeVO(nodes[0], networkGraph));

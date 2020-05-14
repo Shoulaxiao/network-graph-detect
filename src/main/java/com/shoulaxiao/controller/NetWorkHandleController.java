@@ -26,7 +26,7 @@ public class NetWorkHandleController {
 
     @RequestMapping(value = "/launch",method = RequestMethod.POST)
     @ResponseBody
-    public SingleResult acquireFileData(@RequestParam("files") CommonsMultipartFile[] files){
+    public SingleResult acquireFileData(@RequestParam("files") CommonsMultipartFile[] files,@RequestParam("networkGraph") Integer networkGraph){
 
         SingleResult response=new SingleResult();
 
@@ -34,7 +34,7 @@ public class NetWorkHandleController {
             return new SingleResult(null,"","数据文件不能为空");
         }
         try {
-            networkLearnService.networkLearn(files);
+            networkLearnService.networkLearn(files,networkGraph);
             response.setSuccess(true);
         }catch (Exception e){
             return new SingleResult(null,"",e.getMessage());

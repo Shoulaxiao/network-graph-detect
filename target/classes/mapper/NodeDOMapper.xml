@@ -341,7 +341,7 @@
     </insert>
 
 
-    <select id="selectByNodeCodes" parameterMap="java.util.List">
+    <select id="selectByNodeCodes" parameterType="java.util.List" resultMap="BaseResultMap">
         select * from data_node where node_code in
         <foreach item="records" collection="list" open="(" separator="," close=")">
             #{records}

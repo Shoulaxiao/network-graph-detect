@@ -18,4 +18,10 @@ public class NetworkConstant {
      */
     public static final String NODE_DATA_SUFFIX="txt";
 
+
+    /**
+     * 标准划分的格式
+     */
+    public static final String STANDART_FILE="standard";
+
 }

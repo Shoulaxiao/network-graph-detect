@@ -18,4 +18,18 @@ public interface LearnDataService {
     void readNodeData(InputStream inputStream,int networkGraph) throws IOException;
 
 
+    /**
+     * 读取网络节点响亮数据
+     * @param inputStream 节点向量数据
+     * @param networkGraph 网络数据源
+     */
+    void readNodeVectorData(InputStream inputStream, int networkGraph) throws IOException;
+
+
+    /**
+     * 读取标准社区划分
+     * @param inputStream
+     * @param i
+     */
+    void readStandardDivision(InputStream inputStream, int i) throws IOException;
 }

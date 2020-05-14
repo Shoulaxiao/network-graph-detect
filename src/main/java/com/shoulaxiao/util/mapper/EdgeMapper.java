@@ -16,4 +16,8 @@ import java.util.List;
 public interface EdgeMapper {
 
     List<EdgeDO> vo2dos(List<EdgeVO> edgeVOS);
+
+    List<EdgeVO> do2vos(List<EdgeDO> edgeDOList);
+
+    EdgeDO vo2do(EdgeVO edgeVO);
 }

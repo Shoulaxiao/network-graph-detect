@@ -25,5 +25,11 @@ public class Symbol {
     public static final String  COMMA=",";
 
 
+    /**
+     * 横线
+     */
+    public static final String HORIZONTAL_LINE="-";
+
+
 
 }

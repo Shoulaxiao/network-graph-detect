@@ -28,7 +28,10 @@ public class EdgeVO {
     private Double classification;
 
 
-    public EdgeVO(NodeVO startNode, NodeVO endNode,int belongGraph) {
+    public EdgeVO() {
+    }
+
+    public EdgeVO(NodeVO startNode, NodeVO endNode, int belongGraph) {
         this.startNode = startNode;
         this.endNode = endNode;
         this.belongGraph=belongGraph;
@@ -88,6 +91,10 @@ public class EdgeVO {
 
     public void setClassification(Double classification) {
         this.classification = classification;
+    }
+
+    public String getBizKey(){
+        return startNode.getNodeCode()+"-"+endNode.getNodeCode();
     }
 
 }

@@ -104,7 +104,11 @@ public interface NodeDOMapper {
     /**
      * 根据节点code进行查询
      * @param record
+     * @param graph
      * @return
      */
-    List<NodeDO> selectByNodeCodes(List<String> record);
+    List<NodeDO> selectByNodeCodes(@Param("record") List<String> record,@Param("graph") Integer graph);
+
+
+    List<NodeDO> selectByGraph(Integer graph);
 }

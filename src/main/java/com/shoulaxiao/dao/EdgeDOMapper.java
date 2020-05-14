@@ -3,6 +3,8 @@ package com.shoulaxiao.dao;
 import com.shoulaxiao.model.EdgeDO;
 import com.shoulaxiao.model.EdgeDOExample;
 import java.util.List;
+
+import com.shoulaxiao.model.NodeDO;
 import org.apache.ibatis.annotations.Param;
 
 public interface EdgeDOMapper {
@@ -100,4 +102,12 @@ public interface EdgeDOMapper {
      * @return
      */
     int insertByBatch(List<EdgeDO> records);
+
+
+    /**
+     * 通过数据源查看
+     * @param graph
+     * @return
+     */
+        List<EdgeDO> selectByGraph(Integer graph);
 }

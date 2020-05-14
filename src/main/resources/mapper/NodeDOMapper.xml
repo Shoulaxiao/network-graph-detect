@@ -341,10 +341,14 @@
     </insert>
 
 
-    <select id="selectByNodeCodes" parameterMap="java.util.List">
-        select * from data_node where node_code in
+    <select id="selectByNodeCodes"  resultMap="BaseResultMap">
+        select * from data_node where belongGraph=#{graph} and node_code in
         <foreach item="records" collection="list" open="(" separator="," close=")">
             #{records}
         </foreach>
+    </select>
+
+    <select id="selectByGraph" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select select * from data_node where belongGraph=#{graph}
     </select>
 </mapper>

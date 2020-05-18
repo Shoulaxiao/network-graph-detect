@@ -19,4 +19,6 @@ public interface NodeMapper {
     NodeVO do2vo(NodeDO nodeDO);
 
     List<NodeDO> vo2dos(List<NodeVO> nodeVOS);
+
+    List<NodeVO> do2vos(List<NodeDO> selectByGraph);
 }

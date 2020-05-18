@@ -18,6 +18,7 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.io.BufferedReader;
@@ -54,6 +55,7 @@ public class LearnDataServiceImpl implements LearnDataService {
     @Resource
     private NodeDOMapper nodeDao;
 
+    @Transactional(rollbackFor =Exception.class )
     @Override
     public void readNodeData(InputStream inputStream, int networkGraph) throws IOException {
 
@@ -88,7 +90,7 @@ public class LearnDataServiceImpl implements LearnDataService {
                 //保存节点
                 findNeedInsetNodes(nodes, networkGraph);
             }
-            if (CollectionUtils.isNotEmpty(edgeVOList)){
+            if (CollectionUtils.isNotEmpty(edgeVOList)) {
                 edgeDao.insertByBatch(edgeMapper.vo2dos(edgeVOList));
             }
 
@@ -112,27 +114,27 @@ public class LearnDataServiceImpl implements LearnDataService {
         String[] record;
 
         try {
-            while ((line=br.readLine())!=null){
-                record=line.split(Symbol.BLANK_SPANCE);
+            while ((line = br.readLine()) != null) {
+                record = line.split(Symbol.BLANK_SPANCE);
 
-                NodeDOExample example=new NodeDOExample();
-                NodeDOExample.Criteria criteria=example.createCriteria();
+                NodeDOExample example = new NodeDOExample();
+                NodeDOExample.Criteria criteria = example.createCriteria();
                 criteria.andBelongGraphEqualTo(networkGraph);
                 criteria.andNodeCodeEqualTo(record[0]);
 
-                List<NodeDO> result=nodeDao.selectByExample(example);
+                List<NodeDO> result = nodeDao.selectByExample(example);
 
-                if (CollectionUtils.isNotEmpty(result)){
-                    NodeDO nodeDO=result.get(0);
+                if (CollectionUtils.isNotEmpty(result)) {
+                    NodeDO nodeDO = result.get(0);
                     nodeDO.setVectorValue(getVectorValue(record));
 
                     //更新操作
                     nodeDao.updateByPrimaryKey(nodeDO);
                 }
             }
-        }catch (Exception e){
-            logger.error("读取节点向量文件出错:{}",e.getMessage(),e);
-        }finally {
+        } catch (Exception e) {
+            logger.error("读取节点向量文件出错:{}", e.getMessage(), e);
+        } finally {
             br.close();
             bufferedReader.close();
         }
@@ -145,37 +147,38 @@ public class LearnDataServiceImpl implements LearnDataService {
         BufferedReader br = new BufferedReader(bufferedReader);
 
         String line;
-        List<EdgeDO> edgeDOList=edgeDao.selectByGraph(networkGraph);
+        List<EdgeDO> edgeDOList = edgeDao.selectByGraph(networkGraph);
 
-        Map<String,EdgeVO> edgeDOMap=edgeMapper.do2vos(edgeDOList).stream().collect(Collectors.toMap(EdgeVO::getBizKey,Function.identity()));
+        Map<String, EdgeVO> edgeDOMap = edgeMapper.do2vos(edgeDOList).stream().collect(Collectors.toMap(EdgeVO::getBizKey, Function.identity()));
 
-        while ((line=br.readLine())!=null){
-           String[] communities=line.split(Symbol.SEMICOLON);
-           for (int i=0;i<communities.length;i++){
+        while ((line = br.readLine()) != null) {
+            String[] communities = line.split(Symbol.SEMICOLON);
+            for (int i = 0; i < communities.length; i++) {
 
-               for (Map.Entry<String,EdgeVO> edgeVOEntry:edgeDOMap.entrySet()){
-                   EdgeVO edgeVO=edgeVOEntry.getValue();
-                   if (belongSameCommunity(communities[i],edgeVOEntry.getKey())){
-                       edgeVO.setClassification(1.0);
-                   }else {
-                       edgeVO.setClassification(0.0);
-                   }
-                   edgeDao.updateByPrimaryKey(edgeMapper.vo2do(edgeVO));
-               }
-           }
+                for (Map.Entry<String, EdgeVO> edgeVOEntry : edgeDOMap.entrySet()) {
+                    EdgeVO edgeVO = edgeVOEntry.getValue();
+                    if (belongSameCommunity(communities[i], edgeVOEntry.getKey())) {
+                        edgeVO.setClassification(1.0);
+                    } else {
+                        edgeVO.setClassification(0.0);
+                    }
+                    edgeDao.updateByPrimaryKey(edgeMapper.vo2do(edgeVO));
+                }
+            }
         }
     }
 
 
     /**
      * 是否属于同一个社区
+     *
      * @param community
      * @param bizKey
      * @return
      */
-    private boolean belongSameCommunity(String community,String bizKey){
-        String[] nodes=bizKey.split(Symbol.HORIZONTAL_LINE);
-        if (community.contains(nodes[0])&&community.contains(nodes[1])){
+    private boolean belongSameCommunity(String community, String bizKey) {
+        String[] nodes = bizKey.split(Symbol.HORIZONTAL_LINE);
+        if (community.contains(nodes[0]) && community.contains(nodes[1])) {
             return true;
         }
         return false;
@@ -183,13 +186,14 @@ public class LearnDataServiceImpl implements LearnDataService {
 
     /**
      * 得到节点向量
+     *
      * @param record
      * @return
      */
     private String getVectorValue(String[] record) {
-        List<String> vector=Lists.newArrayList();
+        List<String> vector = Lists.newArrayList();
 
-        for (int i=1;i<record.length;i++){
+        for (int i = 1; i < record.length; i++) {
             vector.add(record[i]);
         }
 
@@ -204,11 +208,15 @@ public class LearnDataServiceImpl implements LearnDataService {
         List<String> stringList = new ArrayList<>();
         stringList.add(nodes[0]);
         stringList.add(nodes[1]);
-        Map<String,Object> request=new HashMap<>();
+        Map<String, Object> request = new HashMap<>();
 
-        request.put("list",stringList);
-        request.put("graph",networkGraph);
-        Map<String, NodeDO> nodeDOMap = nodeDao.selectByNodeCodes(request).stream().collect(Collectors.toMap(NodeDO::getNodeCode, Function.identity()));
+        request.put("list", stringList);
+        request.put("graph", networkGraph);
+        List<NodeDO> result = nodeDao.selectByNodeCodes(request);
+        Map<String, NodeDO> nodeDOMap = new HashMap<>();
+        if (CollectionUtils.isNotEmpty(result)) {
+            nodeDOMap = nodeDao.selectByNodeCodes(request).stream().collect(Collectors.toMap(NodeDO::getNodeCode, Function.identity()));
+        }
         if (!nodeDOMap.containsKey(nodes[0])) {
             needInsertResult.add(new NodeVO(nodes[0], networkGraph));
         }
@@ -216,7 +224,7 @@ public class LearnDataServiceImpl implements LearnDataService {
         if (!nodeDOMap.containsKey(nodes[1])) {
             needInsertResult.add(new NodeVO(nodes[1], networkGraph));
         }
-        if (CollectionUtils.isNotEmpty(needInsertResult)){
+        if (CollectionUtils.isNotEmpty(needInsertResult)) {
             nodeDao.insertByBatch(nodeMapper.vo2dos(needInsertResult));
         }
     }

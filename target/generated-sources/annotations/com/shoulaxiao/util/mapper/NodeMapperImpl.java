@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2020-05-13T15:35:29+0800",
+    date = "2020-05-16T22:22:37+0800",
     comments = "version: 1.2.0.Final, compiler: javac, environment: Java 1.8.0_241 (Oracle Corporation)"
 )
 @Component
@@ -58,6 +58,20 @@ public class NodeMapperImpl implements NodeMapper {
         List<NodeDO> list = new ArrayList<NodeDO>( nodeVOS.size() );
         for ( NodeVO nodeVO : nodeVOS ) {
             list.add( vo2do( nodeVO ) );
+        }
+
+        return list;
+    }
+
+    @Override
+    public List<NodeVO> do2vos(List<NodeDO> selectByGraph) {
+        if ( selectByGraph == null ) {
+            return null;
+        }
+
+        List<NodeVO> list = new ArrayList<NodeVO>( selectByGraph.size() );
+        for ( NodeDO nodeDO : selectByGraph ) {
+            list.add( do2vo( nodeDO ) );
         }
 
         return list;

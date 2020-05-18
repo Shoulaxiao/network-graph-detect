@@ -14,4 +14,8 @@ public interface NetworkLearnService {
 
     SingleResult networkLearn(CommonsMultipartFile[] files,int networkGraph) throws IOException;
 
+    SingleResult networkModelTrain(int netGraph);
+
+    SingleResult networkModelTest(int netGraph);
+
 }

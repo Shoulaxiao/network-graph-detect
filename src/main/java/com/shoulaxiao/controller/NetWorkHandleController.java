@@ -3,10 +3,7 @@ package com.shoulaxiao.controller;
 import com.shoulaxiao.service.NetworkLearnService;
 import com.shoulaxiao.util.SingleResult;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import javax.annotation.Resource;
@@ -41,5 +38,12 @@ public class NetWorkHandleController {
         }
         return response;
 
+    }
+
+
+    @ResponseBody
+    @RequestMapping(value = "/train/{graph}",method = RequestMethod.GET)
+    public SingleResult networkModelTrain(@PathVariable(value = "graph")Integer graph){
+        return networkLearnService.networkModelTrain(graph);
     }
 }

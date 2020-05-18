@@ -18,4 +18,7 @@ public interface NetworkLearnService {
 
     SingleResult networkModelTest(int netGraph);
 
+
+    SingleResult networkDivide(int networkGraph) throws IOException;
+
 }

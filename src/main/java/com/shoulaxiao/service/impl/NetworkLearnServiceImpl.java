@@ -20,7 +20,6 @@ import org.apache.commons.math3.linear.ArrayRealVector;
 import org.apache.commons.math3.linear.RealVector;
 import org.encog.Encog;
 import org.encog.engine.network.activation.ActivationSigmoid;
-import org.encog.engine.network.activation.ActivationSoftMax;
 import org.encog.ml.data.MLData;
 import org.encog.ml.data.MLDataPair;
 import org.encog.ml.data.MLDataSet;
@@ -196,6 +195,7 @@ public class NetworkLearnServiceImpl implements NetworkLearnService {
         } while (train.getError() > 0.001 && epoch < maxEpoch);
         train.finishTraining();
 
+        //测试训练结果
         System.out.println("Neural Network Results:");
         for (MLDataPair pair : trainingSet) {
             final MLData output = network.compute(pair.getInput());
@@ -243,6 +243,19 @@ public class NetworkLearnServiceImpl implements NetworkLearnService {
 //        double e=network.calculateError(testSet);
 
         return new SingleResult(null, true, StringUtils.EMPTY, StringUtils.EMPTY);
+    }
+
+
+    /**
+     * 模型的应用划分社区
+     * @param networkGraph
+     * @return
+     */
+    @Override
+    public SingleResult networkDivide(int networkGraph) throws IOException {
+        //数据保存读取
+        List<EdgeVO> edges=edgeMapper.do2vos(edgeDOMapper.selectByGraph(networkGraph));
+        return null;
     }
 
 

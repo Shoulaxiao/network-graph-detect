@@ -98,6 +98,13 @@ public class NetworkLearnServiceImpl implements NetworkLearnService {
         return new SingleResult(null, true, StringUtils.EMPTY, "数据处理成功");
     }
 
+
+    /**
+     * 获取子图的总边数
+     * @param nodeDO
+     * @param graphNodes
+     * @return
+     */
     private double getRealEdges(NodeDO nodeDO, List<NodeDO> graphNodes) {
         double edges = 0;
         List<String> neighbor = JSONObject.parseArray(nodeDO.getNeighborNodes(), String.class);
@@ -113,6 +120,10 @@ public class NetworkLearnServiceImpl implements NetworkLearnService {
         return edges / 2.0;
     }
 
+    /**
+     * 获取邻居节点
+     * @param networkGraph
+     */
     private void generateNeighborList(int networkGraph) {
 
         List<NodeDO> graphNodes = nodeDOMapper.selectByGraph(networkGraph);

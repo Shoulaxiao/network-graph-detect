@@ -55,13 +55,16 @@ public class LearnDataServiceImpl implements LearnDataService {
     @Resource
     private NodeDOMapper nodeDao;
 
+
+    /**
+     * 添加边数据以及节点数据
+     * @param inputStream
+     * @param networkGraph 网络数据源
+     * @throws IOException
+     */
     @Transactional(rollbackFor =Exception.class )
     @Override
     public void readNodeData(InputStream inputStream, int networkGraph) throws IOException {
-
-        //需要保存的边
-        List<EdgeVO> edgeVOList = new ArrayList<>();
-
 
         InputStreamReader bufferedReader = new InputStreamReader(inputStream, StandardCharsets.UTF_8);
 
@@ -84,14 +87,10 @@ public class LearnDataServiceImpl implements LearnDataService {
                 List<EdgeDO> responseDB = edgeDao.selectByExample(query);
                 if (CollectionUtils.isEmpty(responseDB)) {
                     EdgeVO edgeVO = new EdgeVO(new NodeVO(nodes[0]), new NodeVO(nodes[1]), networkGraph);
-                    edgeVOList.add(edgeVO);
-
+                    edgeDao.insertSelective(edgeMapper.vo2do(edgeVO));
                 }
-                //保存节点
+                //保存节点数据
                 findNeedInsetNodes(nodes, networkGraph);
-            }
-            if (CollectionUtils.isNotEmpty(edgeVOList)) {
-                edgeDao.insertByBatch(edgeMapper.vo2dos(edgeVOList));
             }
 
         } catch (Exception e) {
@@ -103,6 +102,13 @@ public class LearnDataServiceImpl implements LearnDataService {
         }
     }
 
+
+    /**
+     * 读取节点向量数据
+     * @param inputStream 节点向量数据
+     * @param networkGraph 网络数据源
+     * @throws IOException
+     */
     @Override
     public void readNodeVectorData(InputStream inputStream, int networkGraph) throws IOException {
 

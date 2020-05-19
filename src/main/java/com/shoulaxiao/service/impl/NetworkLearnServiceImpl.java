@@ -34,10 +34,7 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import javax.annotation.Resource;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -48,6 +45,9 @@ import java.util.stream.Collectors;
  **/
 @Service
 public class NetworkLearnServiceImpl implements NetworkLearnService {
+
+    //阈值
+    public final static double threshold = 0.7;
 
 
     @Resource
@@ -101,6 +101,7 @@ public class NetworkLearnServiceImpl implements NetworkLearnService {
 
     /**
      * 获取子图的总边数
+     *
      * @param nodeDO
      * @param graphNodes
      * @return
@@ -122,6 +123,7 @@ public class NetworkLearnServiceImpl implements NetworkLearnService {
 
     /**
      * 获取邻居节点
+     *
      * @param networkGraph
      */
     private void generateNeighborList(int networkGraph) {
@@ -215,7 +217,7 @@ public class NetworkLearnServiceImpl implements NetworkLearnService {
         }
         //保存训练好的神经网络模型网络
         System.out.println("Saving network");
-        EncogDirectoryPersistence.saveObject(new File("trainModel"),network);
+        EncogDirectoryPersistence.saveObject(new File("trainModel"), network);
         Encog.getInstance().shutdown();
         return new SingleResult(null, true, StringUtils.EMPTY, StringUtils.EMPTY);
     }
@@ -223,7 +225,7 @@ public class NetworkLearnServiceImpl implements NetworkLearnService {
     @Override
     public SingleResult networkModelTest(int netGraph) {
         System.out.println("loading network...");
-        BasicNetwork network= (BasicNetwork) EncogDirectoryPersistence.loadObject(new File("trainModel"));
+        BasicNetwork network = (BasicNetwork) EncogDirectoryPersistence.loadObject(new File("trainModel"));
 
         List<NodeVO> inputs_node = nodeMapper.do2vos(nodeDOMapper.selectByGraph(netGraph));
         Map<String, NodeVO> nodeVOMap = inputs_node.stream().collect(Collectors.toMap(NodeVO::getNodeCode, Function.identity()));
@@ -259,14 +261,108 @@ public class NetworkLearnServiceImpl implements NetworkLearnService {
 
     /**
      * 模型的应用划分社区
+     *
      * @param networkGraph
      * @return
      */
     @Override
     public SingleResult networkDivide(int networkGraph) throws IOException {
         //数据保存读取
-        List<EdgeVO> edges=edgeMapper.do2vos(edgeDOMapper.selectByGraph(networkGraph));
+        List<EdgeVO> edges = edgeMapper.do2vos(edgeDOMapper.selectByGraph(networkGraph));
+        //划分的最后结果
+        List<List<EdgeVO>> culster = new ArrayList<>();
+        //加载边分类模型
+        BasicNetwork network = (BasicNetwork) EncogDirectoryPersistence.loadObject(new File("trainModel"));
+
+        //终止条件：所有的边都遍历
+        while (judgeBreak(edges)) {
+            List<EdgeVO> clus = new ArrayList<>();
+            //找到连接两个节点密度最大的边
+            EdgeVO startEdge = findDensityMaxEdeg(edges);
+            clus.add(startEdge);
+            //设置已经遍历过
+            startEdge.setVisited(true);
+
+            // 找到邻居边
+            Queue<EdgeVO> neighborEdges = findNeighborEdges(startEdge, edges);
+
+            EdgeVO edge = neighborEdges.peek();
+            edge.setVisited(true);
+            double[][] input = {{calculateCosSimilarity(edge.getStartNode().getVectorValue(), edge.getEndNode().getVectorValue()), edge.getStartNode().getDensityValue(), edge.getEndNode().getDensityValue()}};
+            double[][] output = {{0.0, 0.0}};//无意义
+            MLDataSet records = new BasicMLDataSet(input, output);
+
+            MLData rearlyOutput = network.compute(records.get(0).getInput());
+            //边分类的预测值
+            double out = rearlyOutput.getData(0);
+            if (out > threshold) {
+                clus.add(edge);
+                neighborEdges.offer(edge);
+            } else {
+                culster.add(clus);
+                break;
+            }
+        }
+
         return null;
+    }
+
+    /**
+     * 算法条件是否终止
+     *
+     * @param edges
+     * @return
+     */
+    private boolean judgeBreak(List<EdgeVO> edges) {
+        for (EdgeVO edgeVO : edges) {
+            if (!edgeVO.getVisited()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * 找到邻居边
+     *
+     * @param edgeVO
+     * @param edges
+     * @return
+     */
+    private Queue<EdgeVO> findNeighborEdges(EdgeVO edgeVO, List<EdgeVO> edges) {
+        Queue<EdgeVO> neihbors = new LinkedList<EdgeVO>();
+        String startNode = edgeVO.getStartNode().getNodeCode();
+        String endNode = edgeVO.getEndNode().getNodeCode();
+        for (EdgeVO edgeVO1 : edges) {
+            if (edgeVO1.getStartNode().getNodeCode().equals(startNode) || edgeVO1.getStartNode().getNodeCode().equals(endNode) ||
+                    edgeVO1.getEndNode().getNodeCode().equals(startNode) || edgeVO1.getEndNode().getNodeCode().equals(endNode)
+            ) {
+                neihbors.offer(edgeVO1);
+            }
+        }
+        return neihbors;
+    }
+
+    private EdgeVO findDensityMaxEdeg(List<EdgeVO> edges) {
+        if (CollectionUtils.isEmpty(edges)) {
+            return null;
+        }
+        EdgeVO maxDensityEdge = edges.get(0);
+
+        double max_1 = calateMax(maxDensityEdge.getStartNode().getDensityValue(), maxDensityEdge.getEndNode().getDensityValue());
+
+        for (EdgeVO edgeVO : edges) {
+            double current = calateMax(edgeVO.getStartNode().getDensityValue(), edgeVO.getEndNode().getDensityValue());
+
+            if (current > max_1) {
+                maxDensityEdge = edgeVO;
+            }
+        }
+        return maxDensityEdge;
+    }
+
+    private double calateMax(double start, double end) {
+        return Math.abs((start + end) / 2 - start) + Math.abs((start + end) / 2 - end);
     }
 
 

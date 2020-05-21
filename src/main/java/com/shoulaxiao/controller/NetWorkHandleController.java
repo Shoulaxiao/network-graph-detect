@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import javax.annotation.Resource;
+import java.io.IOException;
 
 /**
  * @description:
@@ -45,5 +46,12 @@ public class NetWorkHandleController {
     @RequestMapping(value = "/train/{graph}",method = RequestMethod.GET)
     public SingleResult networkModelTrain(@PathVariable(value = "graph")Integer graph){
         return networkLearnService.networkModelTrain(graph);
+    }
+
+
+    @ResponseBody
+    @RequestMapping(value = "/divide/{graph}",method = RequestMethod.GET)
+    public SingleResult networkModelDevived(@PathVariable(value = "graph")Integer graph) throws IOException {
+        return networkLearnService.networkDivide(graph);
     }
 }

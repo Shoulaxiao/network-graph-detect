@@ -8,8 +8,14 @@
   <component name="ChangeListManager">
     <list default="true" id="615fc18a-254a-4d76-a971-f95859983378" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/shoulaxiao/service/impl/LearnDataServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/shoulaxiao/service/impl/LearnDataServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/shoulaxiao/controller/NetWorkHandleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/shoulaxiao/controller/NetWorkHandleController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/shoulaxiao/service/impl/NetworkLearnServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/shoulaxiao/service/impl/NetworkLearnServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/shoulaxiao/controller/NetWorkHandleController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/shoulaxiao/controller/NetWorkHandleController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/shoulaxiao/service/impl/NetworkLearnServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/shoulaxiao/service/impl/NetworkLearnServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/network-graph-detect-1.0-SNAPSHOT/WEB-INF/classes/com/shoulaxiao/controller/NetWorkHandleController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/network-graph-detect-1.0-SNAPSHOT/WEB-INF/classes/com/shoulaxiao/controller/NetWorkHandleController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/network-graph-detect-1.0-SNAPSHOT/WEB-INF/classes/com/shoulaxiao/service/NetworkLearnService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/network-graph-detect-1.0-SNAPSHOT/WEB-INF/classes/com/shoulaxiao/service/NetworkLearnService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/network-graph-detect-1.0-SNAPSHOT/WEB-INF/classes/com/shoulaxiao/service/impl/LearnDataServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/network-graph-detect-1.0-SNAPSHOT/WEB-INF/classes/com/shoulaxiao/service/impl/LearnDataServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/network-graph-detect-1.0-SNAPSHOT/WEB-INF/classes/com/shoulaxiao/service/impl/NetworkLearnServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/network-graph-detect-1.0-SNAPSHOT/WEB-INF/classes/com/shoulaxiao/service/impl/NetworkLearnServiceImpl.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -24,11 +30,20 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/shoulaxiao/service/impl/NetworkLearnServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="486">
-              <caret line="123" column="13" selection-start-line="123" selection-start-column="13" selection-end-line="123" selection-end-column="13" />
+            <state relative-caret-position="279">
+              <caret line="272" column="8" selection-start-line="272" selection-start-column="8" selection-end-line="272" selection-end-column="8" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/shoulaxiao/service/LearnDataService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="360">
+              <caret line="21" column="15" selection-start-line="21" selection-start-column="15" selection-end-line="21" selection-end-column="15" />
             </state>
           </provider>
         </entry>
@@ -36,8 +51,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/shoulaxiao/service/impl/LearnDataServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="192">
-              <caret line="170" column="46" selection-start-line="170" selection-start-column="28" selection-end-line="170" selection-end-column="46" />
+            <state relative-caret-position="3204">
+              <caret line="209" column="17" selection-start-line="209" selection-start-column="17" selection-end-line="209" selection-end-column="17" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -46,28 +61,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/shoulaxiao/util/mapper/EdgeMapper.java">
+        <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-web/4.0.2.RELEASE/spring-web-4.0.2.RELEASE.jar!/org/springframework/web/multipart/commons/CommonsMultipartFile.class">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="288">
-              <caret line="21" column="32" lean-forward="true" selection-start-line="21" selection-start-column="32" selection-end-line="21" selection-end-column="32" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/shoulaxiao/dao/EdgeDOMapper.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="308">
-              <caret line="46" column="23" selection-start-line="46" selection-start-column="8" selection-end-line="46" selection-end-column="23" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/EdgeDOMapper.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="161">
-              <caret line="158" column="29" selection-start-line="158" selection-start-column="14" selection-end-line="158" selection-end-column="29" />
+            <state relative-caret-position="972">
+              <caret line="77" selection-start-line="77" selection-end-line="77" />
             </state>
           </provider>
         </entry>
@@ -94,7 +91,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/com/shoulaxiao/service/NetworkLearnService.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="324">
-              <caret line="21" column="31" selection-start-line="21" selection-start-column="31" selection-end-line="21" selection-end-column="31" />
+              <caret line="21" column="17" selection-start-line="21" selection-start-column="17" selection-end-line="21" selection-end-column="17" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -105,11 +102,20 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/shoulaxiao/controller/NetWorkHandleController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="486">
-              <caret line="33" selection-start-line="33" selection-end-line="33" />
+            <state relative-caret-position="846">
+              <caret line="54" selection-start-line="54" selection-end-line="54" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-web/4.0.2.RELEASE/spring-web-4.0.2.RELEASE.jar!/org/springframework/web/method/support/InvocableHandlerMethod.class">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2142">
+              <caret line="136" selection-start-line="136" selection-end-line="136" />
             </state>
           </provider>
         </entry>
@@ -202,10 +208,10 @@
         <option value="$PROJECT_DIR$/front/src/App.vue" />
         <option value="$PROJECT_DIR$/src/main/java/com/shoulaxiao/util/mapper/NodeMapper.java" />
         <option value="$PROJECT_DIR$/src/main/test/com/MainTest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/shoulaxiao/controller/NetWorkHandleController.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/login.jsp" />
         <option value="$PROJECT_DIR$/src/main/java/com/shoulaxiao/service/NetworkLearnService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/shoulaxiao/service/impl/LearnDataServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/shoulaxiao/controller/NetWorkHandleController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/shoulaxiao/service/impl/NetworkLearnServiceImpl.java" />
       </list>
     </option>
@@ -265,9 +271,9 @@
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="72" />
-    <option name="y" value="114" />
-    <option name="width" value="1838" />
-    <option name="height" value="789" />
+    <option name="y" value="27" />
+    <option name="width" value="1848" />
+    <option name="height" value="1053" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -502,15 +508,15 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="JavaScriptWeakerCompletionTypeGuess" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1589677918443" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1589867529218" />
     <property name="editor.config.ad.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../Online_DeepWalk" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
@@ -664,6 +670,12 @@
       <workItem from="1589710819795" duration="42000" />
       <workItem from="1589779465660" duration="5222000" />
       <workItem from="1589797117359" duration="526000" />
+      <workItem from="1589863626897" duration="3900000" />
+      <workItem from="1589874660663" duration="1212000" />
+      <workItem from="1590031244603" duration="90000" />
+      <workItem from="1590034092622" duration="423000" />
+      <workItem from="1590034792354" duration="302000" />
+      <workItem from="1590036714138" duration="600000" />
     </task>
     <task id="LOCAL-00001" summary="添加数据库">
       <created>1589357783850</created>
@@ -707,7 +719,21 @@
       <option name="project" value="LOCAL" />
       <updated>1589792448422</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="网络构建">
+      <created>1589863646594</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1589863646595</updated>
+    </task>
+    <task id="LOCAL-00008" summary="模型应用">
+      <created>1589867269187</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1589867269187</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -743,13 +769,13 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="70310000" />
+    <option name="totallyTimeSpent" value="76837000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="72" y="27" width="1848" height="1053" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2909699" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.31661093" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -760,7 +786,7 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49944258" weight="0.34850165" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49944258" weight="0.54051054" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49888518" weight="0.46836847" />
+      <window_info active="true" anchor="bottom" id="Debug" order="3" sideWeight="0.49888518" visible="true" weight="0.45615983" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -794,22 +820,35 @@
     <MESSAGE value="计算邻接表以及节点密度" />
     <MESSAGE value="引入前端" />
     <MESSAGE value="网络构建" />
-    <option name="LAST_COMMIT_MESSAGE" value="网络构建" />
+    <MESSAGE value="模型应用" />
+    <option name="LAST_COMMIT_MESSAGE" value="模型应用" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/shoulaxiao/controller/NetWorkHandleController.java</url>
-          <line>46</line>
+          <line>28</line>
           <properties />
-          <option name="timeStamp" value="5" />
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/shoulaxiao/service/impl/NetworkLearnServiceImpl.java</url>
+          <line>85</line>
+          <properties />
+          <option name="timeStamp" value="7" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/shoulaxiao/controller/NetWorkHandleController.java</url>
-          <line>27</line>
+          <line>54</line>
           <properties />
-          <option name="timeStamp" value="6" />
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/shoulaxiao/service/impl/NetworkLearnServiceImpl.java</url>
+          <line>369</line>
+          <properties />
+          <option name="timeStamp" value="10" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -1110,13 +1149,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/shoulaxiao/service/LearnDataService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="432">
-          <caret line="25" column="9" selection-start-line="25" selection-start-column="9" selection-end-line="25" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/encog/encog-core/3.3.0/encog-core-3.3.0.jar!/org/encog/neural/networks/training/propagation/Propagation.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="738">
@@ -1124,17 +1156,58 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/shoulaxiao/util/mapper/EdgeMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="21" column="32" selection-start-line="21" selection-start-column="32" selection-end-line="21" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/shoulaxiao/dao/EdgeDOMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="774">
+          <caret line="46" column="23" selection-start-line="46" selection-start-column="8" selection-end-line="46" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/EdgeDOMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2844">
+          <caret line="158" column="29" selection-start-line="158" selection-start-column="14" selection-end-line="158" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/shoulaxiao/service/impl/NetworkLearnServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="279">
+          <caret line="272" column="8" selection-start-line="272" selection-start-column="8" selection-end-line="272" selection-end-column="8" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/shoulaxiao/service/LearnDataService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="21" column="15" selection-start-line="21" selection-start-column="15" selection-end-line="21" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/shoulaxiao/service/impl/LearnDataServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3204">
+          <caret line="209" column="17" selection-start-line="209" selection-start-column="17" selection-end-line="209" selection-end-column="17" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-web/4.0.2.RELEASE/spring-web-4.0.2.RELEASE.jar!/org/springframework/web/multipart/commons/CommonsMultipartFile.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="972">
           <caret line="77" selection-start-line="77" selection-end-line="77" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-web/4.0.2.RELEASE/spring-web-4.0.2.RELEASE.jar!/org/springframework/web/method/support/InvocableHandlerMethod.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="828">
-          <caret line="63" selection-start-line="63" selection-end-line="63" />
         </state>
       </provider>
     </entry>
@@ -1155,7 +1228,7 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/com/shoulaxiao/service/NetworkLearnService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="324">
-          <caret line="21" column="31" selection-start-line="21" selection-start-column="31" selection-end-line="21" selection-end-column="31" />
+          <caret line="21" column="17" selection-start-line="21" selection-start-column="17" selection-end-line="21" selection-end-column="17" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1164,11 +1237,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/shoulaxiao/controller/NetWorkHandleController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="486">
-          <caret line="33" selection-start-line="33" selection-end-line="33" />
+        <state relative-caret-position="846">
+          <caret line="54" selection-start-line="54" selection-end-line="54" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-web/4.0.2.RELEASE/spring-web-4.0.2.RELEASE.jar!/org/springframework/web/method/support/InvocableHandlerMethod.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2142">
+          <caret line="136" selection-start-line="136" selection-end-line="136" />
         </state>
       </provider>
     </entry>
@@ -1176,47 +1256,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="216">
           <caret line="12" column="6" selection-start-line="12" selection-start-column="6" selection-end-line="12" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/EdgeDOMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="158" column="29" selection-start-line="158" selection-start-column="14" selection-end-line="158" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/shoulaxiao/dao/EdgeDOMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="46" column="23" selection-start-line="46" selection-start-column="8" selection-end-line="46" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/shoulaxiao/util/mapper/EdgeMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="21" column="32" lean-forward="true" selection-start-line="21" selection-start-column="32" selection-end-line="21" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/shoulaxiao/service/impl/LearnDataServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="192">
-          <caret line="170" column="46" selection-start-line="170" selection-start-column="28" selection-end-line="170" selection-end-column="46" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/shoulaxiao/service/impl/NetworkLearnServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="486">
-          <caret line="123" column="13" selection-start-line="123" selection-start-column="13" selection-end-line="123" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>

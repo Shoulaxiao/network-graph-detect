@@ -269,6 +269,8 @@ public class NetworkLearnServiceImpl implements NetworkLearnService {
     public SingleResult networkDivide(int networkGraph) throws IOException {
         //数据保存读取
         List<EdgeVO> edges = edgeMapper.do2vos(edgeDOMapper.selectByGraph(networkGraph));
+
+        fillNode(edges,networkGraph);
         //划分的最后结果
         List<List<EdgeVO>> culster = new ArrayList<>();
         //加载边分类模型
@@ -279,9 +281,11 @@ public class NetworkLearnServiceImpl implements NetworkLearnService {
             List<EdgeVO> clus = new ArrayList<>();
             //找到连接两个节点密度最大的边
             EdgeVO startEdge = findDensityMaxEdeg(edges);
+            if (startEdge!=null){
+                startEdge.setVisited(true);
+            }
             clus.add(startEdge);
             //设置已经遍历过
-            startEdge.setVisited(true);
 
             // 找到邻居边
             Queue<EdgeVO> neighborEdges = findNeighborEdges(startEdge, edges);
@@ -307,6 +311,19 @@ public class NetworkLearnServiceImpl implements NetworkLearnService {
         return null;
     }
 
+    private void fillNode(List<EdgeVO> edges, int networkGraph) {
+        List<NodeVO> nodeVOList=nodeMapper.do2vos(nodeDOMapper.selectByGraph(networkGraph));
+        if (CollectionUtils.isNotEmpty(nodeVOList)){
+            Map<String,NodeVO> nodeVOMap=nodeVOList.stream().collect(Collectors.toMap(NodeVO::getNodeCode,Function.identity()));
+            for (EdgeVO edgeVO:edges){
+                NodeVO start=nodeVOMap.get(edgeVO.getStartNode().getNodeCode());
+                NodeVO end=nodeVOMap.get(edgeVO.getEndNode().getNodeCode());
+                edgeVO.setStartNode(start);
+                edgeVO.setEndNode(end);
+            }
+        }
+    }
+
     /**
      * 算法条件是否终止
      *
@@ -330,6 +347,9 @@ public class NetworkLearnServiceImpl implements NetworkLearnService {
      * @return
      */
     private Queue<EdgeVO> findNeighborEdges(EdgeVO edgeVO, List<EdgeVO> edges) {
+        if (edgeVO==null){
+            return null;
+        }
         Queue<EdgeVO> neihbors = new LinkedList<EdgeVO>();
         String startNode = edgeVO.getStartNode().getNodeCode();
         String endNode = edgeVO.getEndNode().getNodeCode();

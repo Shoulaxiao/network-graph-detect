@@ -2,6 +2,7 @@ package com.shoulaxiao.model.vo;
 
 import com.alibaba.fastjson.JSON;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,8 +11,9 @@ import java.util.List;
  * @author: shoulaxiao
  * @create: 2020-05-09 18:59
  **/
-public class NodeVO {
+public class NodeVO implements Serializable {
 
+    private static final long serialVersionUID = -3154731041581513841L;
     private Long id;
 
     private String nodeCode;

@@ -1,14 +1,15 @@
 package com.shoulaxiao.model.vo;
 
-import javax.xml.soap.Node;
+import java.io.Serializable;
 
 /**
  * @description: 边
  * @author: shoulaxiao
  * @create: 2020-05-09 18:58
  **/
-public class EdgeVO {
+public class EdgeVO implements Serializable {
 
+    private static final long serialVersionUID = -6118865210951160521L;
     private Long id;
 
     private NodeVO startNode;

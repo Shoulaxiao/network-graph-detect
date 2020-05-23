@@ -50,6 +50,13 @@ public class NetWorkHandleController {
 
 
     @ResponseBody
+    @RequestMapping(value = "/testModel/{graph}",method = RequestMethod.GET)
+    public SingleResult networkModelTest(@PathVariable(value = "graph")Integer graph){
+        return networkLearnService.networkModelTest(graph);
+    }
+
+
+    @ResponseBody
     @RequestMapping(value = "/divide/{graph}",method = RequestMethod.GET)
     public SingleResult networkModelDevived(@PathVariable(value = "graph")Integer graph) throws IOException {
         return networkLearnService.networkDivide(graph);
